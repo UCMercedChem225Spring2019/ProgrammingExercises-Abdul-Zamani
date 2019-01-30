@@ -9,7 +9,6 @@ __About:__ This programming exercise includes three programs.
 __Score: 3/3__
 
 1. Compiles, runs, and produces the correct output.
-2. Comment 2
 
 ## prgm_01_02
 
