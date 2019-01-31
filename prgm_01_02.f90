@@ -55,7 +55,7 @@
       call PrintMatrix3x3(matrixInB)
 !
   999 continue
-      End Program prgm_01_01
+      End Program prgm_01_02
 
 
       Subroutine PrintMatrix3x3(matrix)
