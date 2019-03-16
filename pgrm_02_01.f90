@@ -9,6 +9,10 @@
 !     NDim) of the matrix on the first line. The next NDim*NDim lines each
 !     have one real number each given.
 !
+!
+!     A.Zamani 3/15/19
+!    
+!
       Implicit None
       Integer,Parameter::IIn=10
       Integer::IError,NDim,i,j
@@ -31,12 +35,9 @@
 ! *************************************************************************
 ! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
 ! *************************************************************************
-      READ(*,*) FileName
-     ! write(*,*)' What is the name of the input data file?'
-     !  DO i = 1, n
-     !     j = 1, n
-     ! READ(*,*)  
-     ! END DO
+       DO i = 1, NDim*NDim
+         read(IIn,*), Array_Input(i)
+       END DO
 !
 !
 !     Convert Array_Input to Matrix and print the matrix.
@@ -78,7 +79,15 @@
 ! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
 ! *************************************************************************
 !
-!
+!       
+      k = 1
+      Do i = 1, M
+        Do j = 1, N
+          AMatOut(j,i) = ArrayIn(k) !Switch indicies     
+          k = k+1
+        EndDo
+      EndDo
+!  
       Return
       End Subroutine Packed2Matrix_ColumnWise
 
@@ -104,9 +113,18 @@
 ! *************************************************************************
 ! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
 ! *************************************************************************
+
+      k = 1
+      Do i = 1, M
+        Do j = 1, N
+          AMatOut(i,j) = ArrayIn(k) !Switch indicies
+          k = k+1
+        EndDo
+      EndDo
+
 !
 !
-      Return
+Return
       End Subroutine Packed2Matrix_RowWise
 !
 !
