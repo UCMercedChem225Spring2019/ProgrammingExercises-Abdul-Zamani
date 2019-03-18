@@ -32,9 +32,6 @@
       Read(IIn,*) NDim
       Allocate(Array_Input(NDim*NDim),Matrix(NDim,NDim))
 !
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
        DO i = 1, NDim*NDim
          read(IIn,*), Array_Input(i)
        END DO
@@ -48,11 +45,8 @@
       Call Print_Matrix_Full_Real(Matrix,NDim,NDim)
       Write(*,*)' The matrix expanded according to a column-wise ', &
         'linear packed format:'
-
       Call Packed2Matrix_ColumnWise(NDim,NDim,Array_Input,Matrix)
       Call Print_Matrix_Full_Real(Matrix,NDim,NDim)
-!
-
 !
       End Program pgrm_02_01
 
@@ -73,12 +67,6 @@
 !
 !     Loop through the elements of AMatOut and fill them appropriately from
 !     Array_Input.
-!
-!
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
-!
 !       
       k = 1
       Do i = 1, M
@@ -87,7 +75,7 @@
           k = k+1
         EndDo
       EndDo
-!  
+!
       Return
       End Subroutine Packed2Matrix_ColumnWise
 
@@ -109,11 +97,6 @@
 !     Loop through the elements of AMatOut and fill them appropriately from
 !     Array_Input.
 !
-!
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
-
       k = 1
       Do i = 1, M
         Do j = 1, N
@@ -121,8 +104,6 @@
           k = k+1
         EndDo
       EndDo
-
-!
 !
 Return
       End Subroutine Packed2Matrix_RowWise
@@ -165,4 +146,3 @@ Return
 !
       Return
       End Subroutine Print_Matrix_Full_Real
-!

@@ -33,10 +33,6 @@
       Allocate(EVals(NDim),EVecs(NDim,NDim),Temp_Vector(3*NDim))
       Allocate(Temp_Matrix(NDim,NDim))
 !
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
-!
        DO i = 1, (NDim*(NDim+1)/2) !Read triangle elements
          read(IIn,*), Array_Input(i)
        END DO
@@ -61,8 +57,8 @@
       Call Print_Matrix_Full_Real(EVecs,NDim,NDim)
 !
       End Program pgrm_02_03
-!
-!
+
+
       Subroutine SymmetricPacked2Matrix_LowerPac(N,ArrayIn,AMatOut)
 !
 !     This subroutine accepts an array, ArrayIn, that is (N*(N+1))/2
@@ -81,11 +77,6 @@
 !     Loop through the elements of AMatOut and fill them appropriately
 !     from
 !     Array_Input.
-!
-!
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
 !
       k = 1
       Do i = 1, N
@@ -140,5 +131,3 @@
 !
       Return
       End Subroutine Print_Matrix_Full_Real
-!
-

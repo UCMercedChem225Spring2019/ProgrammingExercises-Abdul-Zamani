@@ -12,7 +12,6 @@
 !
 !     A.Zamani 3/15/19
 !
-!
       Implicit None
       Integer,Parameter::IIn=10
       Integer::IError,NDim,i,j
@@ -32,14 +31,9 @@
       Read(IIn,*) NDim
       Allocate(Array_Input((NDim*(NDim+1))/2),Matrix(NDim,NDim))
 !
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
-
        DO i = 1, (NDim*(NDim+1)/2)
          read(IIn,*), Array_Input(i)
        END DO
-
 !
 !
 !     Convert Array_Input to Matrix and print the matrix.
@@ -72,10 +66,6 @@
 !     Array_Input.
 !
 !
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
-!
       k = 1
       Do i = 1, N
        Do j = i, N
@@ -86,7 +76,6 @@
           k = k + 1
        EndDo
       EndDo
-                  
 !
       Return
       End Subroutine SymmetricPacked2Matrix_LowerPac
@@ -108,11 +97,6 @@
 !
 !     Loop through the elements of AMatOut and fill them appropriately from
 !     Array_Input.
-!
-!
-! *************************************************************************
-! WRITE CODE HERE TO READ THE ARRAY ELEMENTS FROM THE INPUT FILE.
-! *************************************************************************
 !
       k = 1
       Do i = 1, N
@@ -168,4 +152,3 @@
 !
       Return
       End Subroutine Print_Matrix_Full_Real
-!
