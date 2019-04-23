@@ -28,7 +28,7 @@
 !
       implicit none
       integer,parameter::IIn=10
-      integer::i,iError,nElectrons,nOcc,nBasis,lenSym
+      integer::i,iError,nElectrons,nOcc,nBasis,lenSym, j, k
       real::oneElectronEnergy,twoElectronEnergy,tracePS
       real,dimension(:),allocatable::symFock,symCoreHamiltonian, &
         symOverlap, moEnergies,tempSymMatrix
@@ -106,13 +106,12 @@
       !
       !Form the square-root of the overlap matrix.
       !
-      !WARNING!!! SSPEV changes the overlap matrix
+      !WARNING!!! Change in the overlap matrix
       !Use temp array to switch back, then set 
       !symOverlap equal to tempSymMatrix.
       tempSymMatrix = symOverlap
       call InvSQRT_SymMatrix(nBasis,symOverlap,invSqrtOverlap)
       symOverlap = tempSymMatrix
-      !
       !
       !Form fTilde and solve for the MO energies and coefficients.
       !
@@ -134,9 +133,20 @@
       write(*,*)' MO Coefficients:'
       call Print_Matrix_Full_Real(moCoefficients,nBasis,nBasis)
       !
-      !Form Density Matrix: P = cDagger * c
+      !Form Density Matrix: P = c*cT...WHY DOESNT 2*(c*cT) WORK!!!?
       !
-      densityMatrix = MatMul(moCoefficients,transpose(moCoefficients))
+      !densityMatrix = MatMul(moCoefficients,transpose(moCoefficients))
+!!!      
+      densityMatrix = 0
+      do i=1,nBasis
+        do j=1,nBasis
+          do k=1,nOcc
+            densityMatrix(i,j) = densityMatrix(i,j) + &
+             2*(moCoefficients(i,k)*moCoefficients(j,k))
+          endDo
+        endDo
+      endDo
+!!!
       write(*,*)' Density Matrix:' 
       call Print_Matrix_Full_Real(densityMatrix, nBasis, nBasis)
       ! 
@@ -174,7 +184,8 @@
       call Print_Matrix_Full_Real(tempSqMatrix, nBasis, nBasis)
       !PS is P(tempSqMatrix)
       oneElectronEnergy = 0  !Trace
-      do i=1, nElectrons !sum over nElec for tr(PS)
+      do i=1, nBasis !sum over nElec for tr(PS)
+        !apparently summing over nBasis works...should it?
         tracePS = tracePS + tempSqMatrix(i,i)
       enddo
       write(*,*)' The number of electrons is: ',tracePS
